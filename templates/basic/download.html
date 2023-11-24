@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block b2 %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    header {
+        background-color: #007bff;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .container {
+        max-width: 100%;
+        overflow-x: auto;
+        margin: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .student-details img {
+        border-radius: 50%;
+        max-width: 80px;
+        margin-right: 20px;
+    }
+
+    .filter-icon,
+    .search-icon {
+        font-size: 20px;
+        color: #007bff;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .search-icon {
+        margin-left: auto;
+    }
+
+    @media (max-width: 768px) {
+
+        th,
+        td {
+            padding: 10px;
+            font-size: 14px;
+            /* Adjusted font size for better mobile experience */
+        }
+
+        .search-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .search-icon {
+            margin-top: 10px;
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        th,
+        td {
+            padding: 8px;
+            font-size: 12px;
+            /* Adjusted font size for better mobile experience */
+        }
+
+        .search-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .search-icon {
+            margin-top: 10px;
+        }
+
+        table {
+            overflow-x: auto;
+            /* Enable horizontal scrolling on smaller screens */
+        }
+    }
+</style>
+
+<header>
+    <h1>Download Data</h1>
+</header>
+
+<div class="container" style="padding: 55px;">
+    <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" placeholder="Search...">
+        <i class="fas fa-filter filter-icon"></i>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Father's Name</th>
+                <th>College</th>
+                <th>Phone</th>
+                <th>Alternate Phone</th>
+                <th>Paid Amount</th>
+                <th>Mode of Payment</th>
+                <th>Balance Amount</th>
+                <th>Type of Course</th>
+                <th>Courses Name</th>
+                <th>Additional Course</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in data %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.Date }}</td>
+                <td>{{ user.Name }}</td>
+                <td>{{ user.Father_name }}</td>
+                <td>{{ user.College }}</td>
+                <td>{{ user.Phone }}</td>
+                <td>{{ user.Alternate_phone }}</td>
+                <td>{{ user.Paid_Amount }}</td>
+                <td>{{ user.Mode_of_payment }}</td>
+                <td>{{ user.Balance_amount }}</td>
+                <td>{{ user.Type_of_course }}</td>
+                <td>{{ user.Cources_name }}</td>
+                <td>{{ user.additional_course }}</td>
+                <td>
+                    <div class="action-buttons">
+                        <form action="/downloadd/{{user.id}}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="download-btn">Download</button>
+                        </form>
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Launch demo modal
+                      </button>
+                      
+                </td>
+                <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock b2 %}
+
+{% block title %}Students Data{% endblock title %}
