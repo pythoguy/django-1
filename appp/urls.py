@@ -2,6 +2,7 @@ from django.urls import path
 from appp import views
 
 
+
 def conditional_view(request):
     if request.user.is_authenticated:
         return views.formm(request)
@@ -84,8 +85,7 @@ urlpatterns = [
 
 
 
-
-
+    
 
 #     # delete data in student
 #     path("delete/<int:x>", views.detethis),

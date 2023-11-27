@@ -159,41 +159,110 @@
                 <td>{{ user.Cources_name }}</td>
                 <td>{{ user.additional_course }}</td>
                 <td>
-                    <div class="action-buttons">
-                        <form action="/downloadd/{{user.id}}" method="post">
-                        {% csrf_token %}
-                        <button type="submit" class="download-btn">Download</button>
-                        </form>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Launch demo modal
-                      </button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">
+                        Download
+                    </button>
                       
                 </td>
                 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">R e c e i p t</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalBody{{ user.id }}">
+                                <div>
+                                    <h3>Receipt</h3>
+                                    <dl class="row">
+                                        <h5>Details:</h5>
+                                        <dt class="col-sm-4">Id:</dt>
+                                        <dd class="col-sm-8">{{ user.id }}</dd>
+    
+                                        <dt class="col-sm-4">Date:</dt>
+                                        <dd class="col-sm-8">{{ user.Date }}</dd>
+    
+                                        <dt class="col-sm-4">Name:</dt>
+                                        <dd class="col-sm-8">{{ user.Name }}</dd>
+                                        
+                                        <dt class="col-sm-4">Father's Name:</dt>
+                                        <dd class="col-sm-8">{{ user.Father_name }}</dd>
+                                        
+                                        <dt class="col-sm-4">College:</dt>
+                                        <dd class="col-sm-8">{{ user.College }}</dd>
+                                        
+                                        <dt class="col-sm-4">Phone:</dt>
+                                        <dd class="col-sm-8">{{ user.Phone }}</dd>
+                                    </dl>
+                                    <dl class="row">  
+                                        <h5>Payments Details</h5> 
+                                        <dt class="col-sm-4">Paid Amount:</dt>
+                                        <dd class="col-sm-8">{{ user.Paid_Amount }}</dd>
+                                        
+                                        <dt class="col-sm-4">Mode of Payment:</dt>
+                                        <dd class="col-sm-8">{{ user.Mode_of_payment }}</dd>
+                                        
+                                        <dt class="col-sm-4">Balance Amount:</dt>
+                                        <dd class="col-sm-8">{{ user.Balance_amount }}</dd>
+
+                                    </dl>
+                                    <dl class="row">
+                                        <h5>Course Details:</h5>
+                                        <dt class="col-sm-4">Type of Course:</dt>
+                                        <dd class="col-sm-8">{{ user.Type_of_course }}</dd>
+                                        
+                                        <dt class="col-sm-4">Courses Name:</dt>
+                                        <dd class="col-sm-8">{{ user.Cources_name }}</dd>
+                                        
+                                        <dt class="col-sm-4">Additional Course:</dt>
+                                        <dd class="col-sm-8">{{ user.additional_course }}</dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" id="downloadButton{{ user.id }}">Download</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
   
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add click event listener to the download button
+        document.getElementById("downloadButton{{ user.id }}").addEventListener("click", function () {
+            // Use html2canvas to capture the modal content as an image
+            html2canvas(document.getElementById("modalBody{{ user.id }}")).then(function (canvas) {
+                // Convert the canvas to a data URL
+                var dataUrl = canvas.toDataURL("image/png");
+
+                // Create an invisible link element
+                var link = document.createElement("a");
+                link.href = dataUrl;
+                link.target = "_blank";
+                link.download = "modal_image.png"; // You can set the downloaded file name
+
+                // Append the link to the document
+                document.body.appendChild(link);
+
+                // Trigger a click on the link to start the download
+                link.click();
+
+                // Remove the link from the document
+                document.body.removeChild(link);
+            });
+        });
+    });
+</script>
+
 
 {% endblock b2 %}
 

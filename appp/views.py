@@ -6,6 +6,8 @@ from appp.models import User , Studentdata
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 
+
+
 # # Create your views here.
 
 
@@ -212,11 +214,6 @@ def courseupdate(request , x):
 
         return redirect("showcourse")
     return redirect("showcourse")
-
-
-
-
-
 
 
 
