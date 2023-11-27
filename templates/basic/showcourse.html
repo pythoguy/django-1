@@ -141,7 +141,9 @@
                     <div class="action-buttons">
                         <form action="/updatecourse/{{user.id}}" method="post">
                         {% csrf_token %}
-                        <button type="submit" class="update-btn">Update</button>
+                        <button type="submit" class="btn btn-primary">
+                            Update
+                        </button>
                         </form>
                     </div>
                 </td>
