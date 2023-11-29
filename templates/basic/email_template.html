@@ -1,0 +1,90 @@
+<!-- email_template.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Receipt</title>
+    <style>
+        /* Add any styling needed for your email content */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        dl {
+            margin-top: 20px;
+        }
+
+        dt, dd {
+            display: inline-block;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3>Receipt</h3>
+        <dl>
+            <h5>Details:</h5>
+            <dt>ID:</dt>
+            <dd>{{ user.id }}</dd>
+
+            <dt>Date:</dt>
+            <dd>{{ user.Date }}</dd>
+
+            <dt>Name:</dt>
+            <dd>{{ user.Name }}</dd>
+
+            <dt>Father's Name:</dt>
+            <dd>{{ user.Father_name }}</dd>
+
+            <dt>College:</dt>
+            <dd>{{ user.College }}</dd>
+
+            <dt>Phone:</dt>
+            <dd>+91 {{ user.Phone }}</dd>
+        </dl>
+        <dl>
+            <h5>Payments Details:</h5>
+            <dt>Paid Amount:</dt>
+            <dd>{{ user.Paid_Amount }}</dd>
+
+            <dt>Mode of Payment:</dt>
+            <dd>{{ user.Mode_of_payment }}</dd>
+
+            <dt>Balance Amount:</dt>
+            <dd>{{ user.Balance_amount }}</dd>
+        </dl>
+        <dl>
+            <h5>Course Details:</h5>
+            <dt>Type of Course:</dt>
+            <dd>{{ user.Type_of_course }}</dd>
+
+            <dt>Courses Name:</dt>
+            <dd>{{ user.Cources_name }}</dd>
+
+            <dt>Additional Course:</dt>
+            <dd>{{ user.additional_course }}</dd>
+        </dl>
+    </div>
+</body>
+</html>

@@ -3,6 +3,7 @@ from appp import views
 
 
 
+
 def conditional_view(request):
     if request.user.is_authenticated:
         return views.formm(request)
@@ -35,8 +36,8 @@ urlpatterns = [
     # admission form
     path("formm",views.formm,name="formm"),
 
-    # student data saved
-    path("datasaved",views.datasaved),
+    # Email Sending and data save of student
+    path('save_and_email/', views.save_and_email, name='save_and_email'),
 
     # show data of registered students
     path("showdata", views.showdata, name="showdata"),
@@ -84,7 +85,8 @@ urlpatterns = [
     path("courseupdate/<int:x>", views.courseupdate , name="courseupdate"),
 
 
-
+    # Email Sending and data save
+    path('save_and_email/', views.save_and_email, name='save_and_email'),
     
 
 #     # delete data in student

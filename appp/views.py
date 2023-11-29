@@ -6,6 +6,15 @@ from appp.models import User , Studentdata
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
 
+# Form save and email sending
+import pdfkit
+from django.template.loader import render_to_string
+from django.contrib import messages
+
+from django.conf import settings
+from django.core.mail import EmailMessage , send_mail
+
+
 
 
 # # Create your views here.
@@ -84,15 +93,16 @@ def formm(request):
 
 # # students data saved====================================================>>>>>>>>>>>>>
 
-def datasaved(request):
-    if request.method == "POST":
-        
+def save_and_email(request):
+    if request.method == 'POST':
+        # Extract data from the request
         Datee = request.POST.get("date")
         Nname = request.POST.get("name")
         Fathername = request.POST.get("fname")
         Collegee = request.POST.get("college")
         Phoneno = request.POST.get("phone")
         Altphno = request.POST.get("altphno")
+        Eemail = request.POST.get("email")
         Amtpaid = request.POST.get("paid")
         Modofpymt = request.POST.get("modeofpayment")
         Balance = request.POST.get("balance")
@@ -100,12 +110,50 @@ def datasaved(request):
         Course = request.POST.get("courses")
         Addtnlslc = request.POST.get("addtnlslc")
 
-        studata = Studentdata(Date = Datee, Name =  Nname, Father_name = Fathername, College = Collegee, Phone = Phoneno, Alternate_phone = Altphno, Paid_Amount = Amtpaid,Mode_of_payment = Modofpymt, Balance_amount = Balance, Type_of_course = Coursetype, Cources_name = Course, additional_course = Addtnlslc)       
-        studata.save()
+        
+        instance = Studentdata.objects.create(
+            Date=Datee,
+            Name=Nname,
+            Father_name=Fathername,
+            College=Collegee,
+            Phone=Phoneno,
+            Alternate_phone=Altphno,
+            Email=Eemail,
+            Paid_Amount=Amtpaid,
+            Mode_of_payment=Modofpymt,
+            Balance_amount=Balance,
+            Type_of_course=Coursetype,
+            Cources_name=Course,
+            additional_course=Addtnlslc
+        )
 
-        # print(f"{Fname}xxxxxxx")
+        # Generate HTML content from the template
+        html_content = render_to_string('basic/email_template.html', {'user': instance})
 
-        return redirect("showdata")
+        # Get the path to wkhtmltopdf executable
+        wkhtmltopdf_path = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+
+        # Generate PDF from HTML with explicit path to wkhtmltopdf
+        pdf_file = pdfkit.from_string(html_content, False, configuration=pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path))
+
+        # Attach PDF to the email
+        subject = 'Student Registration Details'
+        message = 'Please find the attached receipt for your student registration.'
+        from_email = 'your@example.com'
+        to_email = Eemail 
+
+        email = EmailMessage(subject, message, from_email, [to_email])
+        email.attach('Receipt.pdf', pdf_file, 'application/pdf')
+
+        
+        email.send()
+
+        messages.success(request, 'Registration successful. Receipt sent to your email.')
+        return redirect('showdata')
+
+
+    return redirect('formm')
+
     
 
 
@@ -215,6 +263,18 @@ def courseupdate(request , x):
         return redirect("showcourse")
     return redirect("showcourse")
 
+
+
+
+
+
+
+def sending(request):
+    print(settings.EMAIL_HOST_USER)
+
+    mail = EmailMessage('tunak tunak da da da', 'this is discription', settings.EMAIL_HOST_USER, ["prajapatisahil022@gmail.com"])
+    mail.send()
+    return HttpResponse("Sent")
 
 
 

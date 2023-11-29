@@ -1,0 +1,9 @@
+added :
+Name: 
+pdfkit
+>>>>>>>>  pip install pdfkit
+
+
+Name: 
+wkhtmltopdf
+>>>>  download for windows: https://wkhtmltopdf.org/downloads.html

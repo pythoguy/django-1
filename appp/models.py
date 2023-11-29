@@ -20,6 +20,7 @@ class Studentdata(models.Model):
   College = models.CharField(max_length=255)
   Phone = models.CharField(max_length=255)
   Alternate_phone = models.CharField(max_length=255)
+  Email = models.CharField(max_length=255)
   Paid_Amount = models.CharField(max_length=255)
   Mode_of_payment = models.CharField(max_length=255)
   Balance_amount = models.CharField(max_length=255)

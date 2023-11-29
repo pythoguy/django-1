@@ -117,7 +117,7 @@
     <h1>Download Data</h1>
 </header>
 
-<div class="container" style="padding: 55px;">
+<div class="container">
     <div class="search-container">
         <i class="fas fa-search search-icon"></i>
         <input type="text" placeholder="Search...">
@@ -132,7 +132,7 @@
                 <th>Father's Name</th>
                 <th>College</th>
                 <th>Phone</th>
-                <th>Alternate Phone</th>
+                <th>Email</th>
                 <th>Paid Amount</th>
                 <th>Mode of Payment</th>
                 <th>Balance Amount</th>
@@ -151,7 +151,7 @@
                 <td>{{ user.Father_name }}</td>
                 <td>{{ user.College }}</td>
                 <td>+91 {{ user.Phone }}</td>
-                <td>{{ user.Alternate_phone }}</td>
+                <td>{{ user.Email }}</td>
                 <td>{{ user.Paid_Amount }}</td>
                 <td>{{ user.Mode_of_payment }}</td>
                 <td>{{ user.Balance_amount }}</td>
@@ -194,6 +194,9 @@
                                         
                                         <dt class="col-sm-4">Phone:</dt>
                                         <dd class="col-sm-8">+91 {{ user.Phone }}</dd>
+                                        
+                                        <dt class="col-sm-4">Email:</dt>
+                                        <dd class="col-sm-8">{{ user.Email }}</dd>
                                     </dl>
                                     <dl class="row">  
                                         <h5>Payments Details</h5> 
@@ -234,34 +237,25 @@
     </table>
 </div>
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Add click event listener to the download button
+        // Add click event listener to each download button
+        {% for user in data %}
         document.getElementById("downloadButton{{ user.id }}").addEventListener("click", function () {
-            // Use html2canvas to capture the modal content as an image
-            html2canvas(document.getElementById("modalBody{{ user.id }}")).then(function (canvas) {
-                // Convert the canvas to a data URL
-                var dataUrl = canvas.toDataURL("image/png");
-
-                // Create an invisible link element
-                var link = document.createElement("a");
-                link.href = dataUrl;
-                link.target = "_blank";
-                link.download = "modal_image.png"; // You can set the downloaded file name
-
-                // Append the link to the document
-                document.body.appendChild(link);
-
-                // Trigger a click on the link to start the download
-                link.click();
-
-                // Remove the link from the document
-                document.body.removeChild(link);
+            // Use html2pdf to create a PDF from the modal content
+            html2pdf(document.getElementById("modalBody{{ user.id }}")).then(function (pdf) {
+                // Save the PDF
+                pdf.save("modal_content_{{ user.id }}.pdf");
             });
         });
+        {% endfor %}
     });
 </script>
+
+
+
+
 
 
 {% endblock b2 %}
