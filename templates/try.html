@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iNl4P/OqL3ZN6eYxkhMhZp1e1z0rPrq7H140JKczf5+z5uZKA+2U5CB1i" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iNl4P/OqL3ZN6eYxkhMhZp1e1z0rPrq7H140JKczf5+z5uZKA+2U5CB1i" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iNl4P/OqL3ZN6eYxkhMhZp1e1z0rPrq7H140JKczf5+z5uZKA+2U5CB1i" crossorigin="anonymous">
     <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
 
 
@@ -136,6 +138,9 @@
         .menu-open {
             left: 0;
         }
+        .menu a .fa {
+            margin-right: 10px;
+        }
     </style>
 
     <title>{% block title %}{% endblock title %}</title>
@@ -153,19 +158,15 @@
             <p>{{request.user.first_name}}</p>
             
             <ul class="menu-dropdown">
-                <li><a href="formm">New Receept</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
-                <li class="menu-hasdropdown">
-                    <a href="showupdate">Update Payments</a><span class="icon"><i class="fa fa-gear"></i></span>
+                <li><a href="formm"><i class="fas fa-plus"></i> New Receipt</a></li>
+                <li class="menu-hasdropdown"><a href="showupdate"><i class="fas fa-cog"></i> Update Payments</a></li>
+                <li class="menu-hasdropdown"><a href="showcourse"><i class="fas fa-cog"></i> Update Course</a></li>
+                <li class="menu-hasdropdown"><a href="downloadd"><i class="fas fa-download"></i> Download</a></li>
+                <li class="menu-hasdropdown"><a href="showdata"><i class="fas fa-users"></i> Student's Data</a></li>
+                <li><a href="formm"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="logoutt"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
                 
-                <li class="menu-hasdropdown">
-                    <a href="showcourse">Update Course</a><span class="icon"><i class="fa fa-gear"></i></span>
-                
-                <li class="menu-hasdropdown">
-                    <a href="downloadd">Download</a><span class="icon"><i class="fa fa-gear"></i></span>
-                <li class="menu-hasdropdown">
-                    <a href="showdata">Student's Data</a><span class="icon"><i class="fa fa-gear"></i></span>
-                <li><a href="formm">Home</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
-                <li><a href="logoutt">Logout</a><span class="icon"><i class="fa fa-envelope"></i></span></li>
             </ul>
         </div>
     </nav>

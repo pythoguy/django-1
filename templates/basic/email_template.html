@@ -1,90 +1,149 @@
-<!-- email_template.html -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Registration Receipt</title>
+    <title>Excellence -Technology Receipt</title>
     <style>
-        /* Add any styling needed for your email content */
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f5f5f5;
         }
 
         .container {
-            max-width: 600px;
-            margin: 20px auto;
-            background-color: #fff;
+
+            width: 100%;
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            border: 1px solid #000;
+
         }
 
-        h3 {
+
+        .receipt-title {
+
+            font-size: 24px;
+
+            font-weight: bold;
+
             text-align: center;
+
+            margin-bottom: 20px;
+
         }
 
-        dl {
+
+        .receipt-info {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .receipt-info span {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .receipt-info strong {
+
+            font-weight: bold;
+
+        }
+
+
+        .course-info {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .course-info span {
+
+            display: block;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .course-info strong {
+
+            font-weight: bold;
+
+        }
+
+
+        .terms {
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .terms p {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .receipt-footer {
+
+            font-size: 14px;
+
+            text-align: center;
+
             margin-top: 20px;
-        }
 
-        dt, dd {
-            display: inline-block;
-            margin: 5px 0;
         }
     </style>
+
 </head>
+
 <body>
-    <div>
-        <h3>Receipt</h3>
-        <dl>
-            <h5>Details:</h5>
-            <dt>ID:</dt>
-            <dd>{{ user.id }}</dd>
-
-            <dt>Date:</dt>
-            <dd>{{ user.Date }}</dd>
-
-            <dt>Name:</dt>
-            <dd>{{ user.Name }}</dd>
-
-            <dt>Father's Name:</dt>
-            <dd>{{ user.Father_name }}</dd>
-
-            <dt>College:</dt>
-            <dd>{{ user.College }}</dd>
-
-            <dt>Phone:</dt>
-            <dd>+91 {{ user.Phone }}</dd>
-        </dl>
-        <dl>
-            <h5>Payments Details:</h5>
-            <dt>Paid Amount:</dt>
-            <dd>{{ user.Paid_Amount }}</dd>
-
-            <dt>Mode of Payment:</dt>
-            <dd>{{ user.Mode_of_payment }}</dd>
-
-            <dt>Balance Amount:</dt>
-            <dd>{{ user.Balance_amount }}</dd>
-        </dl>
-        <dl>
-            <h5>Course Details:</h5>
-            <dt>Type of Course:</dt>
-            <dd>{{ user.Type_of_course }}</dd>
-
-            <dt>Courses Name:</dt>
-            <dd>{{ user.Cources_name }}</dd>
-
-            <dt>Additional Course:</dt>
-            <dd>{{ user.additional_course }}</dd>
-        </dl>
+    {{user.data}}
+    <div class="container">
+        <div class="receipt-title">Excellence -Technology Receipt</div>
+        <div class="receipt-info">
+            <div class="xyzz" style="position: absolute;
+            left: 65%;
+            top: 10%;">
+                Date:{{ user.Date }}
+            </div>
+             <span>Received with thanks from:<strong> {{user.Name}}</strong></span>
+                <span>Father's Name:<strong>{{ user.Father_name }}</strong></span> 
+                <span>College:<strong>{{ user.College }}</strong></span> 
+                <span>Phone:<strong>+91{{ user.Phone }}</strong></span> 
+                <span>Alt. Phone:<strong>{{user.Alternate_phone}}</strong></span> 
+                <span>The sum of Rupees: <strong>{{ user.Paid_Amount }}</strong></span> 
+                <span>By Cash / Cheque / Draft No.:<strong>{{ user.Mode_of_payment }}</strong> 
+                <span>for the Course of: <strong>{{ user.Cources_name }}+{{ user.Type_of_course }}</strong></span> 
+                <span>Balance Fee Due: <strong>{{ user.Balance_amount }}</strong></span> 
+            </div>
+        <div class="terms">
+            <h5>terms & Conditions:</h5>
+            <p>1. If the balance fee is not desposited by Due Date then this receipt will be forfeited.</p>
+            <p>2. The above paid fee is not refundable.</p>
+            <p>3. E.&O.E. expected.</p>
+        </div>
+        <div class="receipt-footer">
+            <p><strong>Auth. Signatory</strong></p>
+            <p>Thank you for being a part of Excellence -Technology in Chandigarh.</p>
+        </div>
     </div>
 </body>
+
 </html>

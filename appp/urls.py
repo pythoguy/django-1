@@ -91,4 +91,8 @@ urlpatterns = [
 
 #     # delete data in student
 #     path("delete/<int:x>", views.detethis),
+    path("tryy", views.tryy),
+
+
+
 ]

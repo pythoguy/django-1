@@ -88,7 +88,7 @@ def logoutt(request):
 # admission form========================================================>>>>>>>>>>>>>>>
 @login_required(login_url="/loginn")
 def formm(request):
-    return render(request, "basic/form.html")
+    return render(request, "forms/register.html")
 
 
 # # students data saved====================================================>>>>>>>>>>>>>
@@ -138,7 +138,7 @@ def save_and_email(request):
 
         # Attach PDF to the email
         subject = 'Student Registration Details'
-        message = 'Please find the attached receipt for your student registration.'
+        message = 'Thankyou For Joining!! Please find the attached receipt for your student registration.'
         from_email = 'your@example.com'
         to_email = Eemail 
 
@@ -160,7 +160,7 @@ def save_and_email(request):
 # showdata of registered students
 @login_required(login_url="/loginn")
 def showdata(request):
-    data = Studentdata.objects.all()
+    data = Studentdata.objects.all().order_by('-id')
     return render(request, "basic/showdata.html", {"data" : data})
 
 
@@ -172,7 +172,7 @@ def showdata(request):
 # show payment page of registered students for updation
 @login_required(login_url="/loginn")
 def showupdate(request):
-    data = Studentdata.objects.all()
+    data = Studentdata.objects.all().order_by('-id')
     return render(request, "basic/showpayment.html", {"data" : data})
 
 
@@ -182,7 +182,7 @@ def showupdate(request):
 @login_required(login_url="/loginn")
 def updatepymts(request, x):
     data = Studentdata.objects.get(id = x)
-    return render(request, "basic/paymentform.html", {"data" : data})
+    return render(request, "forms/paymentform.html", {"data" : data})
 
 ## edit and update Pyments of students==========================>>>>>
 @login_required(login_url="/loginn")
@@ -215,6 +215,13 @@ def downloadd(request):
     return render(request, "basic/download.html", {"data" : data})
 
 
+# def tryy(request):
+#     data = Studentdata.objects.all()
+#     return render(request, "tryyyyy.html", {"data" : data})
+def tryy(request):
+    return render(request, "try.html")
+
+
 
 
 
@@ -231,14 +238,14 @@ def downloadd(request):
 # show course page of registered students for updation
 @login_required(login_url="/loginn")
 def showcourse(request):
-    data = Studentdata.objects.all()
+    data = Studentdata.objects.all().order_by('-id')
     return render(request, "basic/showcourse.html", {"data" : data})
 
 # update Course of students================================>>>>>>>>>>>
 @login_required(login_url="/loginn")
 def updatecourse(request, x):
     data = Studentdata.objects.get(id = x)
-    return render(request, "basic/courseform.html", {"data" : data})
+    return render(request, "forms/courseform.html", {"data" : data})
 
 
 # edit and update Course of students==========================>>>>>
@@ -264,17 +271,6 @@ def courseupdate(request , x):
     return redirect("showcourse")
 
 
-
-
-
-
-
-def sending(request):
-    print(settings.EMAIL_HOST_USER)
-
-    mail = EmailMessage('tunak tunak da da da', 'this is discription', settings.EMAIL_HOST_USER, ["prajapatisahil022@gmail.com"])
-    mail.send()
-    return HttpResponse("Sent")
 
 
 

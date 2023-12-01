@@ -159,105 +159,133 @@
                 <td>{{ user.Cources_name }}</td>
                 <td>{{ user.additional_course }}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{ user.id }}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ user.id }}">
                         Download
                     </button>
-                      
                 </td>
-                <!-- Modal -->
-    <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">R e c e i p t</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="modalBody{{ user.id }}">
-                                <div>
-                                    <h3>Receipt</h3>
-                                    <dl class="row">
-                                        <h5>Details:</h5>
-                                        <dt class="col-sm-4">Id:</dt>
-                                        <dd class="col-sm-8">{{ user.id }}</dd>
-    
-                                        <dt class="col-sm-4">Date:</dt>
-                                        <dd class="col-sm-8">{{ user.Date }}</dd>
-    
-                                        <dt class="col-sm-4">Name:</dt>
-                                        <dd class="col-sm-8">{{ user.Name }}</dd>
-                                        
-                                        <dt class="col-sm-4">Father's Name:</dt>
-                                        <dd class="col-sm-8">{{ user.Father_name }}</dd>
-                                        
-                                        <dt class="col-sm-4">College:</dt>
-                                        <dd class="col-sm-8">{{ user.College }}</dd>
-                                        
-                                        <dt class="col-sm-4">Phone:</dt>
-                                        <dd class="col-sm-8">+91 {{ user.Phone }}</dd>
-                                        
-                                        <dt class="col-sm-4">Email:</dt>
-                                        <dd class="col-sm-8">{{ user.Email }}</dd>
-                                    </dl>
-                                    <dl class="row">  
-                                        <h5>Payments Details</h5> 
-                                        <dt class="col-sm-4">Paid Amount:</dt>
-                                        <dd class="col-sm-8">{{ user.Paid_Amount }}</dd>
-                                        
-                                        <dt class="col-sm-4">Mode of Payment:</dt>
-                                        <dd class="col-sm-8">{{ user.Mode_of_payment }}</dd>
-                                        
-                                        <dt class="col-sm-4">Balance Amount:</dt>
-                                        <dd class="col-sm-8">{{ user.Balance_amount }}</dd>
+            </tr>
 
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">R e c e i p t</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modalBody{{ user.id }}">
+                                <div id="invoice{{ user.id }}">
+                                    <h3>Receipt</h3>
+                                    <dl style="display: grid;">
+                                        <h5>Details:</h5>
+                                        <div>
+                                            <dt>ID:</dt>
+                                            <dd>{{ user.id }}</dd>
+                                        </div>
+
+                                        <div>
+                                            <dt>Date:</dt>
+                                            <dd>{{ user.Date }}</dd>
+                                        </div>
+
+                                        <div>
+                                            <dt>Name:</dt>
+                                            <dd>{{ user.Name }}</dd>
+                                        </div>
+
+                                        <div>
+                                            <dt>Father's Name:</dt>
+                                            <dd>{{ user.Father_name }}</dd>
+                                        </div>
+
+                                        <div>
+                                            <dt>College:</dt>
+                                            <dd>{{ user.College }}</dd>
+                                        </div>
+
+                                        <div>
+                                            <dt>Phone:</dt>
+                                            <dd>+91 {{ user.Phone }}</dd>
+                                        </div>
                                     </dl>
-                                    <dl class="row">
+                                    <dl>
+                                        <h5>Payments Details:</h5>
+
+                                        <div class="xyx" style="display: flex; justify-content: space-around;">
+                                            <div>
+                                                <dt>Paid Amount:</dt>
+                                                <dd>{{ user.Paid_Amount }}</dd>
+                                            </div>
+
+                                            <div>
+                                                <dt>Mode of Payment:</dt>
+                                                <dd>{{ user.Mode_of_payment }}</dd>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex; justify-content: center;">
+                                            <dt>Balance Amount:</dt>
+                                            <dd>{{ user.Balance_amount }}</dd>
+                                        </div>
+                                    </dl>
+                                    <dl>
                                         <h5>Course Details:</h5>
-                                        <dt class="col-sm-4">Type of Course:</dt>
-                                        <dd class="col-sm-8">{{ user.Type_of_course }}</dd>
-                                        
-                                        <dt class="col-sm-4">Courses Name:</dt>
-                                        <dd class="col-sm-8">{{ user.Cources_name }}</dd>
-                                        
-                                        <dt class="col-sm-4">Additional Course:</dt>
-                                        <dd class="col-sm-8">{{ user.additional_course }}</dd>
+
+                                        <div class="xyx" style="display: flex; justify-content: space-around;">
+                                            <div>
+                                                <dt>Type of Course:</dt>
+                                                <dd>{{ user.Type_of_course }}</dd>
+                                            </div>
+
+                                            <div>
+                                                <dt>Courses Name:</dt>
+                                                <dd>{{ user.Cources_name }}</dd>
+                                            </div>
+                                        </div>
+
+                                        <div style="display: flex;justify-content: center;">
+                                            <dt>Additional Course:</dt>
+                                            <dd>{{ user.additional_course }}</dd>
+                                        </div>
                                     </dl>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="downloadButton{{ user.id }}">Download</button>
+                                <button type="button" class="btn btn-primary" id="download{{ user.id }}">Download</button>
+
                             </div>
                         </div>
                     </div>
-                </div>
-  
-            </tr>
+                </div>   
+            
             {% endfor %}
-        </tbody>
-    </table>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Add click event listener to each download button
+    window.onload = function () {
         {% for user in data %}
-        document.getElementById("downloadButton{{ user.id }}").addEventListener("click", function () {
-            // Use html2pdf to create a PDF from the modal content
-            html2pdf(document.getElementById("modalBody{{ user.id }}")).then(function (pdf) {
-                // Save the PDF
-                pdf.save("modal_content_{{ user.id }}.pdf");
-            });
+        document.getElementById("download{{ user.id }}").addEventListener("click", () => {
+            const invoice = this.document.getElementById("invoice{{ user.id }}");
+            var opt = {
+                margin: 1,
+                filename: 'Receipt.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
         });
         {% endfor %}
-    });
-</script>
-
-
-
-
-
+    }
+    
+                </script>
 
 {% endblock b2 %}
 
-{% block title %}Students Data{% endblock title %}
+{% block title %}Data{% endblock title %}
