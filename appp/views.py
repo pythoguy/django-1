@@ -216,15 +216,6 @@ def downloadd(request):
     return render(request, "basic/download.html", {"data" : data})
 
 
-# def tryy(request):
-#     data = Studentdata.objects.all()
-#     return render(request, "tryyyyy.html", {"data" : data})
-def tryy(request):
-    return render(request, "try.html")
-
-
-
-
 
 
 

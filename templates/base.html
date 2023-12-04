@@ -136,6 +136,21 @@
         .menu-open {
             left: 0;
         }
+
+        #search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+    
+        #search-input {
+            padding: 8px;
+            width: 60%;
+        }
+    
+        #search-button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
     </style>
 
     <title>{% block title %}{% endblock title %}</title>
@@ -143,17 +158,25 @@
 <body>
 
 <div class="primary-nav">
-    <button type="button" class="hamburger open-panel nav-toggle">
+    <button type="button" class="hamburger open-panel nav-toggle" style="background-color: white;">
         <span class="screen-reader-text"></span>
     </button>
     <nav role="navigation" class="menu">
         <a href="formm" class="logotype">Excellence<span></span></a>
         <div class="overflow-container">
             <p>Welcome : </p>
-            <p>{{request.user.first_name}}</p>
+            <p>>>{{request.user.first_name}}</p>
             
-            <ul class="menu-dropdown">
-                <li><a href="formm">New Receept</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
+                <ul>
+                    <li class="menu-dropdown"><form action="/search" method="get">
+                    <div id="search-container">
+                        <input type="text" id="search-input" name="search-input" placeholder="Search by Name">
+                        <button id="search-button" type="submit">Search</button>
+                    </div>
+                </form></li>
+                <li class="menu-dropdown">
+                    <a href="formm">New Receept</a><span class="icon"><i class="fa fa-dashboard"></i></span></li>
+                
                 <li class="menu-hasdropdown">
                     <a href="showupdate">Update Payments</a><span class="icon"><i class="fa fa-gear"></i></span>
                 
