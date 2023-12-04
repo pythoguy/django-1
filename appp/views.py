@@ -92,7 +92,7 @@ def formm(request):
 
 
 # # students data saved====================================================>>>>>>>>>>>>>
-
+@login_required(login_url="/loginn")
 def save_and_email(request):
     if request.method == 'POST':
         # Extract data from the request
@@ -210,7 +210,7 @@ def pymtupdate(request , x):
 
 
 # download===============================================================>>>>>>>>>>>>>>
-
+@login_required(login_url="/loginn")
 def downloadd(request):
     data = Studentdata.objects.all()
     return render(request, "basic/download.html", {"data" : data})
@@ -266,22 +266,25 @@ def courseupdate(request , x):
 
 
 # Search Buttons functions=========================================================>>>>>>>>>>>>>>>>>>>
-
+@login_required(login_url="/loginn")
 def search(request):
     query = request.GET['search-input']
     data = Studentdata.objects.filter(Name__icontains =query)
     return render(request, "basic/search.html", {'data' : data})
 
+@login_required(login_url="/loginn")
 def searchcou(request):
     query = request.GET['search-input']
     data = Studentdata.objects.filter(Name__icontains =query)
     return render(request, "basic/showcourse.html", {'data' : data})
 
+@login_required(login_url="/loginn")
 def searchpym(request):
     query = request.GET['search-input']
     data = Studentdata.objects.filter(Name__icontains =query)
     return render(request, "basic/showpayment.html", {'data' : data})
 
+@login_required(login_url="/loginn")
 def searchdow(request):
     query = request.GET['search-input']
     data = Studentdata.objects.filter(Name__icontains =query)

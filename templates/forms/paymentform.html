@@ -2,64 +2,11 @@
 
 {% block b2 %}
 
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        background-color: #f5f5f5;
-    }
 
-    .container {
-        max-width: 600px;
-        margin: 20px auto;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-        text-align: center;
-    }
-
-    form {
-        display: grid;
-        gap: 15px;
-    }
-
-    label {
-        font-weight: bold;
-    }
-
-    input,
-    select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background-color: #45a049;
-    }
-</style>
-
-
+<div class="main">
 <div class="container" style="margin-top: 2px;">
     <h2>Payments Update Form</h2>
-    <form action="/pymtupdate/{{data.id}}" method="post">
+    <form class="formm" action="/pymtupdate/{{data.id}}" method="post">
         {% csrf_token %}
         <label for="date">Date:</label>
         <input type="date" value={{data.Date}} name="date" required>
@@ -81,8 +28,9 @@
         <input type="number"  value={{data.Balance_amount}} name="balance" required>
 
         
-        <button type="submit">Update</button>
+        <button type="submit" class="bt">Update</button>
     </form>
+</div>
 </div>
 
 
