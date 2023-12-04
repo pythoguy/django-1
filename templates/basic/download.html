@@ -87,26 +87,43 @@
     {% for user in data %}
     <section>
         <div class="student-card">
-            <div class="student-id">ID: {{user.id}}</div>
-            <div class="student-info">Date: {{ user.Date }}</div>
-            <div class="student-info">Name: {{user.Name}}</div>
-            <div class="student-info">Father's Name: {{ user.Father_name }}</div>
-            <div class="student-info">College: {{ user.College }}</div>
-            <div class="student-info">Phone: {{ user.Phone }}</div>
-            <div class="student-info">Alternate Phone: {{ user.Alternate_phone }}</div>
-            <div class="student-info">Email: {{ user.Email }}</div>
-            <div class="student-info">Paid Amount: {{ user.Paid_Amount }}</div>
-            <div class="student-info">Mode of Payment: {{ user.Mode_of_payment }}</div>
-            <div class="student-info">Balance Amount: {{ user.Balance_amount }}</div>
-            <div class="student-info">Type of Course: {{ user.Type_of_course }}</div>
-            <div class="student-info">Courses Name: {{ user.Cources_name }}</div>
-            <div class="student-info">Additional Course: {{ user.additional_course }}</div>
+            <div class="student-id" style="text-align: center;">ID: {{user.id}}</div>
+            <div class="student-info" style="text-align: center;"><b>Date:</b> {{ user.Date }}</div>
+
+            <div style="display : flex;justify-content: space-evenly;">
+            <div class="student-info"><b>Name:</b> {{user.Name}}</div>
+            <div class="student-info"><b>Father's Name:</b> {{ user.Father_name }}</div>
+            </div>
+            <div style="text-align: center;">
+            <div class="student-info"><b>College:</b> {{ user.College }}</div>
+            </div>
+
+            <div style="display : flex;justify-content: space-evenly;">
+            <div class="student-info"><b>Phone:</b> {{ user.Phone }}</div>
+            <div class="student-info"><b>Alternate Phone:</b> {{ user.Alternate_phone }}</div>
+            </div>
+
+            <div class="student-info" style="text-align: center;"><b>Email:</b> {{ user.Email }}</div>
+
+            <div style="display : flex;justify-content: space-evenly;">
+            <div class="student-info"><b>Paid Amount:</b> {{ user.Paid_Amount }}</div>
+            <div class="student-info"><b>Mode of Payment:</b> {{ user.Mode_of_payment }}</div>
+            <div class="student-info"><b>Balance Amount:</b> {{ user.Balance_amount }}</div>
+            </div>
+
+            <div style="display : flex;justify-content: space-evenly;">
+            <div class="student-info"><b>Type of Course:</b> {{ user.Type_of_course }}</div>
+            <div class="student-info"><b>Courses Name:</b> {{ user.Cources_name }}</div>
+            <div class="student-info"><b>Additional Course:</b> {{ user.additional_course }}</div>
+            </div>
+            <center>
             <div>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#exampleModal{{ user.id }}">
                         Download
                     </button>
             </div>
+        </center>
         </div>
 
     </section>

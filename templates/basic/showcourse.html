@@ -87,12 +87,18 @@
     {% for user in data %}
     <section>
         <div class="student-card">
-            <div class="student-id">ID: {{user.id}}</div>
-            <div class="student-info">Date: {{ user.Date }}</div>
-            <div class="student-info">Name: {{user.Name}}</div>
-            <div class="student-info">Type of Course: {{ user.Type_of_course }}</div>
-            <div class="student-info">Courses Name: {{ user.Cources_name }}</div>
-            <div class="student-info">Additional Course: {{ user.additional_course }}</div>
+            <div class="student-id" style="text-align: center;">ID: {{user.id}}</div>
+
+            <div class="student-info" style="text-align: center;"><b>Date:</b> {{ user.Date }}</div>
+
+            <div class="student-info" style="text-align: center;"><b>Name:</b> {{user.Name}}</div>
+            
+            <div style="display : flex;justify-content: space-evenly;">
+                <div class="student-info"><b>Type of Course:</b> {{ user.Type_of_course }}</div>
+                <div class="student-info"><b>Courses Name:</b> {{ user.Cources_name }}</div>
+                <div class="student-info"><b>Additional Course:</b> {{ user.additional_course }}</div>
+                </div>
+                <center>
             <div class="action-buttons">
                 <form action="/updatecourse/{{user.id}}" method="post">
                 {% csrf_token %}
@@ -101,6 +107,7 @@
                 </button>
                 </form>
             </div>
+        </center>
         </div>
 
         

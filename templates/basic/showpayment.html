@@ -87,12 +87,19 @@
     {% for user in data %}
     <section>
         <div class="student-card">
-            <div class="student-id">ID: {{user.id}}</div>
-            <div class="student-info">Date: {{ user.Date }}</div>
-            <div class="student-info">Name: {{user.Name}}</div>
-            <div class="student-info">Paid Amount: {{ user.Paid_Amount }}</div>
-            <div class="student-info">Mode of Payment: {{ user.Mode_of_payment }}</div>
-            <div class="student-info">Balance Amount: {{ user.Balance_amount }}</div>
+            <div class="student-id" style="text-align: center;">ID: {{user.id}}</div>
+
+            <div class="student-info" style="text-align: center;"><b>Date:</b> {{ user.Date }}</div>
+
+            <div class="student-info" style="text-align: center;"><b>Name:</b> {{user.Name}}</div>
+
+            <div style="display : flex;justify-content: space-evenly;">
+            <div class="student-info"><b>Paid Amount:</b> {{ user.Paid_Amount }}</div>
+            <div class="student-info"><b>Mode of Payment:</b> {{ user.Mode_of_payment }}</div>
+            <div class="student-info"><b>Balance Amount:</b> {{ user.Balance_amount }}</div>
+            </div>
+
+            <center>
             <div class="action-buttons">
                 <form action="/updatepymts/{{user.id}}" method="post">
                   {% csrf_token %}
@@ -101,6 +108,7 @@
                 </button>
                 </form>
             </div>
+        </center>
         </div>
 
     </section>
