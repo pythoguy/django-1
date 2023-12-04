@@ -77,10 +77,13 @@
     <header>
         <h1>Update Payment</h1>
     </header>
-    <div id="search-container">
-        <input type="text" id="search-input" placeholder="Search by Name">
-        <button id="search-button" onclick="searchStudents()">Search</button>
-    </div>
+    <form action="/searchpym" method="get">
+        <div id="search-container">
+            <input type="text" id="search-input" name="search-input" placeholder="Search by Name">
+            <button id="search-button" type="submit">Search</button>
+        </div>
+    </form>
+    {% if data %}
     {% for user in data %}
     <section>
         <div class="student-card">
@@ -101,8 +104,11 @@
         </div>
 
     </section>
-</div>
-{% endfor %}
+    {% endfor %}
+    {% else %}
+        <p style="text-align: center;">Result Not Found</p>
+    {% endif %}
+    </div>
 
 {% endblock b2 %}
 

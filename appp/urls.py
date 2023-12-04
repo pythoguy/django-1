@@ -94,5 +94,11 @@ urlpatterns = [
     path("tryy", views.tryy),
 
 
+    path('search', views.search, name='search'),
+    path('searchcou', views.searchcou),
+    path('searchpym', views.searchpym),
+    path('searchdow', views.searchdow),
+
+
 
 ]

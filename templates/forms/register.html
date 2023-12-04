@@ -73,28 +73,44 @@
         <label for="college">College:</label>
         <input type="text" name="college" required>
 
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="tel" name="phone" required placeholder="+91">
-
-        <label for="alternatePhoneNumber">Alternate Phone Number:</label>
-        <input type="tel" name="altphno">
+        <div class="ph" style="display: flex;
+        gap: inherit;">
+            <div>
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" name="phone" required placeholder="+91">
+            </div>
+            <div>
+                <label for="alternatePhone">Alternate Phone:</label>
+                <input type="tel" name="altphno">
+            </div>
+        </div>
 
         <label for="email">Email:</label>
         <input type="email" name="email" required>
-        
-        <label for="paidFees">Paid Amount:</label>
-        <input type="number" name="paid" required>
 
-        <label for="modeOfPayment">Mode of Payment:</label>
-        <select name="modeofpayment" required>
-            <option value="" disabled selected>Select</option>
-            <option value="cash">Cash</option>
-            <option value="card">Card</option>
-            <option value="online">Online</option>
-        </select>
+        <div>
+                <label for="modeOfPayment">Mode of Payment:</label>
+                <select name="modeofpayment" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                    <option value="online">Online</option>
+                </select>
+            </div>
 
-        <label for="balanceFees">Balance Amount:</label>
-        <input type="number" name="balance" required>
+        <div class="py" style="display: flex;
+        gap: 12px;">
+            
+            <div>        
+                <label for="paidFees">Paid Amount:</label>
+                <input type="number" name="paid" required>
+            </div>
+            
+            <div>
+                <label for="balanceFees">Balance Amount:</label>
+                <input type="number" name="balance" required>
+            </div>
+        </div>
 
         <label for="courseType">Select Type of Course:</label>
         <select name="coursetype" required>

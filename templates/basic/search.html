@@ -75,7 +75,7 @@
 
 <div class="main">
     <header>
-        <h1>Student Data</h1>
+        <h1>Searched items</h1>
     </header>
     <form action="/search" method="get">
         <div id="search-container">
@@ -84,8 +84,12 @@
         </div>
     </form>
     
+    
+    <h3 style="text-align: center;">Searched Item:</h3>
+    {% if data %}
     {% for user in data %}
     <section>
+        
         <div class="student-card">
             <div class="student-id">ID: {{user.id}}</div>
             <div class="student-info">Date: {{ user.Date }}</div>
@@ -103,10 +107,14 @@
             <div class="student-info">Additional Course: {{ user.additional_course }}</div>
         </div>
 
+        
     </section>
+    {% endfor %}
+{% else %}
+    <p style="text-align: center;">Result Not Found</p>
+{% endif %}
 </div>
-{% endfor %}
 
 {% endblock b2 %}
 
-{% block title %}Students Data{% endblock title %}
+{% block title %}Search{% endblock title %}

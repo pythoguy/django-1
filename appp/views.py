@@ -160,6 +160,7 @@ def save_and_email(request):
 # showdata of registered students
 @login_required(login_url="/loginn")
 def showdata(request):
+    
     data = Studentdata.objects.all().order_by('-id')
     return render(request, "basic/showdata.html", {"data" : data})
 
@@ -273,5 +274,24 @@ def courseupdate(request , x):
 
 
 
+# Search Buttons functions=========================================================>>>>>>>>>>>>>>>>>>>
 
+def search(request):
+    query = request.GET['search-input']
+    data = Studentdata.objects.filter(Name__icontains =query)
+    return render(request, "basic/search.html", {'data' : data})
 
+def searchcou(request):
+    query = request.GET['search-input']
+    data = Studentdata.objects.filter(Name__icontains =query)
+    return render(request, "basic/showcourse.html", {'data' : data})
+
+def searchpym(request):
+    query = request.GET['search-input']
+    data = Studentdata.objects.filter(Name__icontains =query)
+    return render(request, "basic/showpayment.html", {'data' : data})
+
+def searchdow(request):
+    query = request.GET['search-input']
+    data = Studentdata.objects.filter(Name__icontains =query)
+    return render(request, "basic/download.html", {'data' : data})

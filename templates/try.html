@@ -1,212 +1,234 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iNl4P/OqL3ZN6eYxkhMhZp1e1z0rPrq7H140JKczf5+z5uZKA+2U5CB1i" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iNl4P/OqL3ZN6eYxkhMhZp1e1z0rPrq7H140JKczf5+z5uZKA+2U5CB1i" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iNl4P/OqL3ZN6eYxkhMhZp1e1z0rPrq7H140JKczf5+z5uZKA+2U5CB1i" crossorigin="anonymous">
-    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+{% extends "base.html" %}
 
+{% block b2 %}
+<style>
+    .main {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        
+    }
 
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1em 0;
+    }
 
-    <style>
-        /* Menu Styles */
-        .primary-nav {
-            position: fixed;
+    section {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-color: #f5f5f5;
+    }
+
+    .student-card {
+        padding: 20px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .student-card:last-child {
+        border-bottom: none;
+    }
+
+    .student-id {
+        font-size: 1em;
+        font-weight: bold;
+        color: black;
+    }
+
+    .student-info {
+        margin-top: 8px;
+        color: rgb(27, 25, 25);
+    }
+
+    @media only screen and (max-width: 850px),
+    (max-width: 844px) {
+        .student-id {
+            font-size: 0.8em;
+            font-weight: bold;
+            color: black;
         }
+    }
 
-        .menu ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
 
-        .open-panel {
-            border: none;
-            background-color: #fff;
-            padding: 0;
-        }
 
-        .hamburger {
-            background: #fff;
-            position: relative;
-            display: block;
-            text-align: center;
-            padding: 13px 0;
-            width: 50px;
-            height: 73px;
-            left: 0;
-            top: 0;
-            z-index: 1000;
-            cursor: pointer;
-        }
+    #search-container {
+        margin: 20px auto;
+        text-align: center;
+    }
 
-        .hamburger:before {
-            content: "\2630"; 
-            display: block;
-            color: #000;
-            line-height: 32px;
-            font-size: 16px;
-        }
+    #search-input {
+        padding: 8px;
+        width: 60%;
+    }
 
-        .menu,
-        .menu a,
-        .menu a:visited {
-            color: #aaa;
-            text-decoration: none !important;
-            position: relative;
-        }
+    #search-button {
+        padding: 8px 16px;
+        cursor: pointer;
+    }
+</style>
 
-        .menu a {
-            display: block;
-            white-space: nowrap;
-            padding: 1em;
-            font-size: 14px;
-        }
-
-        .menu {
-            position: absolute;
-            display: block;
-            left: -200px;
-            top: 0;
-            width: 250px;
-            transition: all 0.45s cubic-bezier(0.77, 0, 0.175, 1);
-            background-color: #000;
-            z-index: 999;
-        }
-
-        .overflow-container {
-            position: relative;
-            height: calc(100vh - 73px) !important;
-            overflow-y: auto;
-            border-top: 73px solid #fff;
-            z-index: -1;
-            display: block;
-        }
-
-        .menu a.logotype {
-            position: absolute !important;
-            top: 11px;
-            left: 55px;
-            display: block;
-            font-family: 'Work Sans', sans-serif;
-            text-transform: uppercase;
-            font-weight: 800;
-            color: #000;
-            font-size: 21px;
-            padding: 10px;
-        }
-
-        .menu:hover {
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
-
-        @media screen and (min-width: 42em) {
-            h1, .h1 { letter-spacing: -2px; }
-            h1, .h1 { font-size: 3.157em; }
-            h2, .h2 { font-size: 2.369em; }
-            h3, .h3 { font-size: 1.777em; }
-            h4, .h4 { font-size: 1.333em; }
-            p { font-size: 1.0625em; }
-            p.intro { font-size: 1.3em; }
-        }
-
-        @media screen and (min-width: 72em) {
-            h1 { letter-spacing: -3px; }
-            h1, .h1 { margin-bottom: 0.35em; font-size: 3.998em; }
-            h2, .h2  { font-size: 2.827em; }
-            h3, .h3 { font-size: 1.999em; }
-            h4, .h4 { font-size: 1.414em; }
-            p { font-size: 1.125em; }
-            p.intro { font-size: 1.4em; }
-        }
-
-        .menu {
-            position: absolute;
-            top: 0;
-            left: -250px;
-            width: 250px;
-            height: 100vh;
-            background-color: #000;
-            transition: left 0.45s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .menu-open {
-            left: 0;
-        }
-        .menu a .fa {
-            margin-right: 10px;
-        }
-    </style>
-
-    <title>{% block title %}{% endblock title %}</title>
-</head>
-<body>
-
-<div class="primary-nav">
-    <button type="button" class="hamburger open-panel nav-toggle">
-        <span class="screen-reader-text"></span>
-    </button>
-    <nav role="navigation" class="menu">
-        <a href="formm" class="logotype">Excellence<span></span></a>
-        <div class="overflow-container">
-            <p>Welcome : </p>
-            <p>{{request.user.first_name}}</p>
-            
-            <ul class="menu-dropdown">
-                <li><a href="formm"><i class="fas fa-plus"></i> New Receipt</a></li>
-                <li class="menu-hasdropdown"><a href="showupdate"><i class="fas fa-cog"></i> Update Payments</a></li>
-                <li class="menu-hasdropdown"><a href="showcourse"><i class="fas fa-cog"></i> Update Course</a></li>
-                <li class="menu-hasdropdown"><a href="downloadd"><i class="fas fa-download"></i> Download</a></li>
-                <li class="menu-hasdropdown"><a href="showdata"><i class="fas fa-users"></i> Student's Data</a></li>
-                <li><a href="formm"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="logoutt"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-
-                
-            </ul>
+<div class="main">
+    <header>
+        <h1>Download Data</h1>
+    </header>
+    <form action="/search" method="get">
+        <div id="search-container">
+            <input type="text" id="search-input" name="search-input" placeholder="Search by Name">
+            <button id="search-button" type="submit">Search</button>
         </div>
-    </nav>
+    </form>
+    
+    {% for user in data %}
+    <section>
+        <div class="student-card">
+            <div class="student-id">ID: {{user.id}}</div>
+            <div class="student-info">Date: {{ user.Date }}</div>
+            <div class="student-info">Name: {{user.Name}}</div>
+            <div class="student-info">Father's Name: {{ user.Father_name }}</div>
+            <div class="student-info">College: {{ user.College }}</div>
+            <div class="student-info">Phone: {{ user.Phone }}</div>
+            <div class="student-info">Alternate Phone: {{ user.Alternate_phone }}</div>
+            <div class="student-info">Email: {{ user.Email }}</div>
+            <div class="student-info">Paid Amount: {{ user.Paid_Amount }}</div>
+            <div class="student-info">Mode of Payment: {{ user.Mode_of_payment }}</div>
+            <div class="student-info">Balance Amount: {{ user.Balance_amount }}</div>
+            <div class="student-info">Type of Course: {{ user.Type_of_course }}</div>
+            <div class="student-info">Courses Name: {{ user.Cources_name }}</div>
+            <div class="student-info">Additional Course: {{ user.additional_course }}</div>
+            <div>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ user.id }}">
+                        Download
+                    </button>
+            </div>
+        </div>
+
+    </section>
 </div>
 
-{% block b2 %}{% endblock b2 %}
+<!-- Modal -->
+<div class="modal fade" id="exampleModal{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">R e c e i p t</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalBody{{ user.id }}">
+            <div id="invoice{{ user.id }}">
+                <h3>Receipt</h3>
+                <dl style="display: grid;">
+                    <h5>Details:</h5>
+                    <div>
+                        <dt>ID:</dt>
+                        <dd>{{ user.id }}</dd>
+                    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXpQrLQcxdQ9fy3HL9FUqR4ShFQq9mJLmLpP" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+                    <div>
+                        <dt>Date:</dt>
+                        <dd>{{ user.Date }}</dd>
+                    </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                    <div>
+                        <dt>Name:</dt>
+                        <dd>{{ user.Name }}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Father's Name:</dt>
+                        <dd>{{ user.Father_name }}</dd>
+                    </div>
+
+                    <div>
+                        <dt>College:</dt>
+                        <dd>{{ user.College }}</dd>
+                    </div>
+
+                    <div>
+                        <dt>Phone:</dt>
+                        <dd>+91 {{ user.Phone }}</dd>
+                    </div>
+                </dl>
+                <dl>
+                    <h5>Payments Details:</h5>
+
+                    <div class="xyx" style="display: flex; justify-content: space-around;">
+                        <div>
+                            <dt>Paid Amount:</dt>
+                            <dd>{{ user.Paid_Amount }}</dd>
+                        </div>
+
+                        <div>
+                            <dt>Mode of Payment:</dt>
+                            <dd>{{ user.Mode_of_payment }}</dd>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: center;">
+                        <dt>Balance Amount:</dt>
+                        <dd>{{ user.Balance_amount }}</dd>
+                    </div>
+                </dl>
+                <dl>
+                    <h5>Course Details:</h5>
+
+                    <div class="xyx" style="display: flex; justify-content: space-around;">
+                        <div>
+                            <dt>Type of Course:</dt>
+                            <dd>{{ user.Type_of_course }}</dd>
+                        </div>
+
+                        <div>
+                            <dt>Courses Name:</dt>
+                            <dd>{{ user.Cources_name }}</dd>
+                        </div>
+                    </div>
+
+                    <div style="display: flex;justify-content: center;">
+                        <dt>Additional Course:</dt>
+                        <dd>{{ user.additional_course }}</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="download{{ user.id }}">Download</button>
+
+        </div>
+    </div>
+</div>
+</div> 
+{% endfor %}
 
 
-{% comment %} navigation bar script {% endcomment %}
 <script>
-    $(document).ready(function () {
-        $('.nav-toggle').on('click', function () {
-            // Toggle the menu visibility
-            $('.menu').toggleClass('menu-open');
+    window.onload = function () {
+        {% for user in data %}
+        document.getElementById("download{{ user.id }}").addEventListener("click", () => {
+            const invoice = this.document.getElementById("invoice{{ user.id }}");
+            var opt = {
+                margin: 1,
+                filename: 'Receipt.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().from(invoice).set(opt).save();
         });
-
-        // Close menu when clicking outside of it
-        $(document).on('click', function (event) {
-            if (!$(event.target).closest('.primary-nav').length) {
-                $('.menu').removeClass('menu-open');
-            }
-        });
-
-        // Close menu when the cursor leaves the menu
-        $('.menu').mouseleave(function () {
-            $('.menu').removeClass('menu-open');
-        });
-    });
-
-
-
-
+        {% endfor %}
+    }
     
-</script>
+                </script>
 
-</body>
-</html>
+{% endblock b2 %}
+
+{% block title %}Download{% endblock title %}
