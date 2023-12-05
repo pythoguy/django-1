@@ -80,10 +80,184 @@
         <input type="text" name="addtnlslc">
 
         
-            <button type="submit" class="bt">Submit</button>
+        <button type="button" onclick="populateModal()">Submit</button>
+
+   
+</div>
+</div>
+{% comment %} =============================================================================>>>>>>>>>>>>>>>>> {% endcomment %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">R e c e i p t</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                    <h3>Receipt</h3>
+                    <dl style="display: grid;">
+                        <h5>Details:</h5>
+                        <div>
+                            <dt>Date:</dt>
+                            <dd>{{ user.Date }}</dd>
+                        </div>
+
+
+                        <div>
+                            <dt>Name:</dt>
+                            <dd>{{ user.Name }}</dd>
+
+
+                            <div>
+                                <dt>Father's Name:</dt>
+                                <dd>Mr. {{ user.Father_name }}</dd>
+                            </div>
+
+                            <div>
+                                <dt>College:</dt>
+                                <dd>{{ user.College }}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Phone:</dt>
+                                <dd>+91 {{ user.Phone }}</dd>
+                            </div>
+                    </dl>
+                    <dl>
+                        <h5>Payments Details:</h5>
+
+                        <div class="xyx" style="display: flex; justify-content: space-around;">
+                            <div>
+                                <dt>Paid Amount:</dt>
+                                <dd>{{ user.Paid_Amount }}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Mode of Payment:</dt>
+                                <dd>{{ user.Mode_of_payment }}</dd>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: center;">
+                            <dt>Balance Amount:</dt>
+                            <dd>{{ user.Balance_amount }}</dd>
+                        </div>
+                    </dl>
+                    <dl>
+                        <h5>Course Details:</h5>
+
+                        <div class="xyx" style="display: flex; justify-content: space-around;">
+                            <div>
+                                <dt>Type of Course:</dt>
+                                <dd>{{ user.Type_of_course }}</dd>
+                            </div>
+
+                            <div>
+                                <dt>Courses Name:</dt>
+                                <dd>{{ user.Cources_name }}</dd>
+                            </div>
+                        </div>
+
+                        <div style="display: flex;justify-content: center;">
+                            <dt>Additional Course:</dt>
+                            <dd>{{ user.additional_course }}</dd>
+                        </div>
+                    </dl>
+                </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close&Edit</button>
+                <button type="submit" class="btn btn-primary">Save&Send</button>
+
+            </div>
+        </div>
     </form>
+    </div>
 </div>
-</div>
+
+<script>
+    function populateModal() {
+        // Get form data
+        var formData = {
+            date: document.getElementsByName('date')[0].value,
+            name: document.getElementsByName('name')[0].value,
+            fname: document.getElementsByName('fname')[0].value,
+            college: document.getElementsByName('college')[0].value,
+            phone: document.getElementsByName('phone')[0].value,
+            altphno: document.getElementsByName('altphno')[0].value,
+            email: document.getElementsByName('email')[0].value,
+            modeofpayment: document.getElementsByName('modeofpayment')[0].value,
+            paid: document.getElementsByName('paid')[0].value,
+            balance: document.getElementsByName('balance')[0].value,
+            coursetype: document.getElementsByName('coursetype')[0].value,
+            courses: document.getElementsByName('courses')[0].value,
+            addtnlslc: document.getElementsByName('addtnlslc')[0].value
+        };
+
+        // Populate modal with form data
+        var modalBody = document.querySelector('.modal-body');
+        modalBody.innerHTML = `
+            <dl style="display: grid;">
+                <u><h5>Details:</h5></u>
+                <dt>Date:</dt>
+                <dd>${formData.date}</dd>
+                <dt>Name:</dt>
+                <dd>${formData.name}</dd>
+                <dt>Father's Name:</dt>
+                <dd>${formData.fname}</dd>
+                <dt>College:</dt>
+                <dd>${formData.college}</dd>
+                <dt>Phone:</dt>
+                <dd>${formData.phone}</dd>
+                <dt>Alternate Phone:</dt>
+                <dd>${formData.altphno}</dd>
+                <dt>Email:</dt>
+                <dd>${formData.email}</dd>
+                <u><h5>Payments Details:</h5></u>
+                <div class="xyx" style="display: flex; justify-content: space-around;">
+                    <div>
+                        <dt>Mode of Payment:</dt>
+                        <dd>${formData.modeofpayment}</dd>
+                    </div>
+                    <div>
+                        <dt>Paid Amount:</dt>
+                        <dd>${formData.paid}</dd>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center;">
+                    <div>
+                        <dt>Balance Amount:</dt>
+                        <dd>${formData.balance}</dd>
+                    </div>
+                </div>
+                
+                <u><h5>Course Details:</h5></u>
+                <div class="xyx" style="display: flex; justify-content: space-around;">
+                    <div>
+                        <dt>Type of Course:</dt>
+                        <dd>${formData.coursetype}</dd>
+                    </div>
+                    <div>
+                        <dt>Courses Name:</dt>
+                        <dd>${formData.courses}</dd>
+                    </div>
+                </div>
+                <div style="display: flex;justify-content: center;">
+                    <div>
+                        <dt>Additional Course:</dt>
+                        <dd>${formData.addtnlslc}</dd>
+                    </div>
+                </div>
+
+            </dl>
+        `;
+
+        // Open the modal
+        $('#exampleModal').modal('show');
+    }
+</script>
+
 
 
 

@@ -92,7 +92,7 @@ urlpatterns = [
 #     # delete data in student
 #     path("delete/<int:x>", views.detethis),
 
-
+    # search
     path('search', views.search, name='search'),
     path('searchcou', views.searchcou),
     path('searchpym', views.searchpym),
