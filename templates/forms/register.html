@@ -3,6 +3,9 @@
 {% block b2 %}
 
 <div class="main">
+    <header>
+        <h1>Registration</h1>
+    </header>
 <div class="container" style="margin-top: 2px;">
     <h2>Student Registration Form</h2>
     <form class="formm" action="{% url 'save_and_email' %}" method="post">
@@ -194,6 +197,8 @@
             courses: document.getElementsByName('courses')[0].value,
             addtnlslc: document.getElementsByName('addtnlslc')[0].value
         };
+        
+        
 
         // Populate modal with form data
         var modalBody = document.querySelector('.modal-body');
@@ -253,8 +258,14 @@
             </dl>
         `;
 
-        // Open the modal
-        $('#exampleModal').modal('show');
+        if (formData.date  && formData.name && formData.fname && formData.email && formData.phone && formData.modeofpayment && formData.paid && formData.balance && formData.coursetype && formData.courses && formData.college){
+            // Open the modal
+                $('#exampleModal').modal('show');
+        }else{
+            alert("Fill all the fields!!");
+        }
+
+        
     }
 </script>
 

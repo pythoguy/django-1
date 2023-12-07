@@ -14,6 +14,9 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.mail import EmailMessage , send_mail
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
 
 
 
@@ -160,8 +163,18 @@ def save_and_email(request):
 # showdata of registered students
 @login_required(login_url="/loginn")
 def showdata(request):
-    
-    data = Studentdata.objects.all().order_by('-id')
+    data_list = Studentdata.objects.all().order_by('-id')
+
+    data_per_page = 10
+    paginator = Paginator(data_list, data_per_page)
+
+    page = request.GET.get('page')
+    try:
+        data = paginator.page(page)
+    except PageNotAnInteger:
+        data = paginator.page(1)
+    except EmptyPage:
+        data = paginator.page(paginator.num_pages)
     return render(request, "basic/showdata.html", {"data" : data})
 
 
@@ -173,7 +186,18 @@ def showdata(request):
 # show payment page of registered students for updation
 @login_required(login_url="/loginn")
 def showupdate(request):
-    data = Studentdata.objects.all().order_by('-id')
+    data_list = Studentdata.objects.all().order_by('-id')
+
+    data_per_page = 10
+    paginator = Paginator(data_list, data_per_page)
+
+    page = request.GET.get('page')
+    try:
+        data = paginator.page(page)
+    except PageNotAnInteger:
+        data = paginator.page(1)
+    except EmptyPage:
+        data = paginator.page(paginator.num_pages)
     return render(request, "basic/showpayment.html", {"data" : data})
 
 
@@ -212,7 +236,18 @@ def pymtupdate(request , x):
 # download===============================================================>>>>>>>>>>>>>>
 @login_required(login_url="/loginn")
 def downloadd(request):
-    data = Studentdata.objects.all()
+    data_list = Studentdata.objects.all()
+
+    data_per_page = 10
+    paginator = Paginator(data_list, data_per_page)
+
+    page = request.GET.get('page')
+    try:
+        data = paginator.page(page)
+    except PageNotAnInteger:
+        data = paginator.page(1)
+    except EmptyPage:
+        data = paginator.page(paginator.num_pages)
     return render(request, "basic/download.html", {"data" : data})
 
 
@@ -230,7 +265,18 @@ def downloadd(request):
 # show course page of registered students for updation
 @login_required(login_url="/loginn")
 def showcourse(request):
-    data = Studentdata.objects.all().order_by('-id')
+    data_list = Studentdata.objects.all().order_by('-id')
+
+    data_per_page = 10
+    paginator = Paginator(data_list, data_per_page)
+
+    page = request.GET.get('page')
+    try:
+        data = paginator.page(page)
+    except PageNotAnInteger:
+        data = paginator.page(1)
+    except EmptyPage:
+        data = paginator.page(paginator.num_pages)
     return render(request, "basic/showcourse.html", {"data" : data})
 
 # update Course of students================================>>>>>>>>>>>
