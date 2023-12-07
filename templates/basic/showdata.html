@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block b2 %}
-
+<style>
+    .GKG{
+        text-decoration: none;
+    }
+</style>
 
 <div class="main">
     <header>
@@ -17,8 +21,8 @@
     <div class="pagination">
         <span class="step-links">
             {% if data.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ data.previous_page_number }}">previous</a>
+                <a class="GKG" href="?page=1">&laquo; first</a>
+                <a class="GKG" href="?page={{ data.previous_page_number }}">previous</a>
             {% endif %}
     
             <span class="current">
@@ -26,8 +30,8 @@
             </span>
     
             {% if data.has_next %}
-                <a href="?page={{ data.next_page_number }}">next</a>
-                <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+                <a class="GKG" href="?page={{ data.next_page_number }}">next</a>
+                <a class="GKG" href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         </span>
     </div>

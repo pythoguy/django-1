@@ -6,6 +6,7 @@ body {
     margin: 0;
     background-color: #f8f9fa; /* Optional: Set a background color */
     font-family: 'Arial', sans-serif;
+    text-decoration: none;
 }
 
 form {
@@ -65,3 +66,4 @@ p {
     font-size: 14px;
     color: #555;
 }
+
